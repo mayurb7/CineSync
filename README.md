@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # CineSync - Concurrent Movie Booking System
 
 
