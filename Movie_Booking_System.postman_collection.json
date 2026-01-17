@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "movie-booking-system",
+		"name": "Movie Booking System API",
+		"description": "Complete API collection for Movie Booking System with concurrent booking handling",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"name\": \"John Doe\",\n  \"phoneNumber\": \"1234567890\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Create a new user"
+					}
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/{{userId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						},
+						"description": "Get user details by user ID"
+					}
+				},
+				{
+					"name": "Get User by Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/email/{{userEmail}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"email",
+								"{{userEmail}}"
+							]
+						},
+						"description": "Get user details by email address"
+					}
+				}
+			],
+			"description": "User management endpoints"
+		},
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "Create Movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"The Matrix\",\n  \"description\": \"A computer hacker learns about the true nature of reality and his role in the war against its controllers.\",\n  \"duration\": 136,\n  \"genre\": \"Sci-Fi\",\n  \"language\": \"English\",\n  \"releaseDate\": \"1999-03-31\",\n  \"ticketPrice\": 500.0\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/movies",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"movies"
+							]
+						},
+						"description": "Create a new movie"
+					}
+				},
+				{
+					"name": "Get All Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/movies",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"movies"
+							]
+						},
+						"description": "Get all movies"
+					}
+				},
+				{
+					"name": "Get Movie by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/movies/{{movieId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"movies",
+								"{{movieId}}"
+							]
+						},
+						"description": "Get movie details by ID"
+					}
+				},
+				{
+					"name": "Search Movies by Title",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/movies/search?title={{movieTitle}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"movies",
+								"search"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "{{movieTitle}}"
+								}
+							]
+						},
+						"description": "Search movies by title (partial match)"
+					}
+				},
+				{
+					"name": "Get Movies by Genre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/movies/genre/{{genre}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"movies",
+								"genre",
+								"{{genre}}"
+							]
+						},
+						"description": "Get all movies by genre"
+					}
+				}
+			],
+			"description": "Movie management endpoints"
+		},
+		{
+			"name": "Shows",
+			"item": [
+				{
+					"name": "Create Show",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"showTime\": \"2025-12-15T18:00:00\",\n  \"screenNumber\": \"Screen 1\",\n  \"totalSeats\": 50\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/shows/movie/{{movieId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"shows",
+								"movie",
+								"{{movieId}}"
+							]
+						},
+						"description": "Create a new show for a movie. Automatically creates seats."
+					}
+				},
+				{
+					"name": "Get Shows by Movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/shows/movie/{{movieId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"shows",
+								"movie",
+								"{{movieId}}"
+							]
+						},
+						"description": "Get all shows for a specific movie"
+					}
+				},
+				{
+					"name": "Get Upcoming Shows by Movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/shows/movie/{{movieId}}/upcoming",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"shows",
+								"movie",
+								"{{movieId}}",
+								"upcoming"
+							]
+						},
+						"description": "Get only upcoming shows for a specific movie"
+					}
+				},
+				{
+					"name": "Get Show by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/shows/{{showId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"shows",
+								"{{showId}}"
+							]
+						},
+						"description": "Get show details by ID"
+					}
+				}
+			],
+			"description": "Show management endpoints"
+		},
+		{
+			"name": "Seats",
+			"item": [
+				{
+					"name": "Get All Seats by Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/seats/show/{{showId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"seats",
+								"show",
+								"{{showId}}"
+							]
+						},
+						"description": "Get all seats for a show (available, booked, reserved)"
+					}
+				},
+				{
+					"name": "Get Available Seats by Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/seats/show/{{showId}}/available",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"seats",
+								"show",
+								"{{showId}}",
+								"available"
+							]
+						},
+						"description": "Get only available seats for a show"
+					}
+				}
+			],
+			"description": "Seat management endpoints"
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "Create Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": 1,\n  \"showId\": 1,\n  \"seatIds\": [1, 2, 3]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/bookings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings"
+							]
+						},
+						"description": "Create a new booking. Handles concurrent bookings automatically with pessimistic locking and retry mechanism."
+					}
+				},
+				{
+					"name": "Get Booking by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/bookings/{{bookingId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"{{bookingId}}"
+							]
+						},
+						"description": "Get booking details by ID"
+					}
+				},
+				{
+					"name": "Get User Bookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/bookings/user/{{userId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"user",
+								"{{userId}}"
+							]
+						},
+						"description": "Get all bookings for a specific user"
+					}
+				},
+				{
+					"name": "Cancel Booking",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/bookings/{{bookingId}}/cancel",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"{{bookingId}}",
+								"cancel"
+							]
+						},
+						"description": "Cancel a booking and release the seats"
+					}
+				}
+			],
+			"description": "Booking management endpoints with concurrent booking handling"
+		},
+		{
+			"name": "Complete Flow Example",
+			"item": [
+				{
+					"name": "1. Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"alice@example.com\",\n  \"name\": \"Alice Smith\",\n  \"phoneNumber\": \"9876543210\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					}
+				},
+				{
+					"name": "2. Create Movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Inception\",\n  \"description\": \"A skilled thief is given a chance at redemption if he can perform the impossible task of inception.\",\n  \"duration\": 148,\n  \"genre\": \"Sci-Fi\",\n  \"language\": \"English\",\n  \"releaseDate\": \"2010-07-16\",\n  \"ticketPrice\": 600.0\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/movies",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"movies"
+							]
+						}
+					}
+				},
+				{
+					"name": "3. Create Show",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"showTime\": \"2025-12-20T20:00:00\",\n  \"screenNumber\": \"Screen 2\",\n  \"totalSeats\": 100\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/shows/movie/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"shows",
+								"movie",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "4. Get Available Seats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/seats/show/1/available",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"seats",
+								"show",
+								"1",
+								"available"
+							]
+						}
+					}
+				},
+				{
+					"name": "5. Create Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": 1,\n  \"showId\": 1,\n  \"seatIds\": [1, 2, 3]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/bookings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings"
+							]
+						}
+					}
+				}
+			],
+			"description": "Complete workflow example from user creation to booking"
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "userEmail",
+			"value": "john.doe@example.com",
+			"type": "string"
+		},
+		{
+			"key": "movieId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "movieTitle",
+			"value": "Matrix",
+			"type": "string"
+		},
+		{
+			"key": "genre",
+			"value": "Sci-Fi",
+			"type": "string"
+		},
+		{
+			"key": "showId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "bookingId",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}
+

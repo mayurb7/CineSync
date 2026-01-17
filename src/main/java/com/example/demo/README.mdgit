@@ -1,0 +1,2 @@
+"# CineSync"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin https://github.com/mayurb7/CineSync.gitgit push -u origin main
+"# CineSync"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin https://github.com/mayurb7/CineSync.gitgit push -u origin main
