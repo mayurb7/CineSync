@@ -1,8 +1,6 @@
 <<<<<<< HEAD
 # CineSync - Concurrent Movie Booking System
-=======
-# SeatLock - Concurrent Movie Booking System
->>>>>>> 32a48613eccdf43c0ec1ef5a7f174be977893694
+
 
 A robust, scalable movie booking system built with Spring Boot that handles concurrent seat reservations efficiently. This system ensures data consistency and prevents double bookings even when multiple users attempt to book the same seat simultaneously.
 
@@ -295,10 +293,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is open source and available under the MIT License.
 
-## 👨‍💻 Author
-
-Developed as a demonstration project showcasing concurrent transaction handling in Spring Boot applications.
-
 ## 🎯 Future Enhancements
 
 - [ ] Add authentication and authorization (JWT)
@@ -313,7 +307,6 @@ Developed as a demonstration project showcasing concurrent transaction handling 
 
 ---
 
-**Note**: This project demonstrates advanced concepts in concurrent programming, database transactions, and RESTful API design. It's suitable for learning and can be extended for production use with additional security and performance optimizations.
 
 <<<<<<< HEAD
 
